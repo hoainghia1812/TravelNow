@@ -1,0 +1,89 @@
+.gioi-thieu {
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .gioi-thieu-header {
+    background: url('/images/header-background.jpg') center/cover no-repeat;
+    color: #fff;
+    padding: 50px 20px;
+  }
+  
+  .gioi-thieu-header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+  }
+  
+  .gioi-thieu-header p {
+    font-size: 1.2em;
+  }
+  
+  .gioi-thieu-cong-ty, .gioi-thieu-dich-vu, .gioi-thieu-ly-do, .gioi-thieu-danh-gia, .gioi-thieu-footer {
+    margin: 40px 0;
+  }
+  
+  .dich-vu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .dich-vu-item {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dich-vu-item h3 {
+    margin-bottom: 10px;
+    color: #2b8a3e;
+  }
+  
+  .gioi-thieu-ly-do ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .gioi-thieu-ly-do li {
+    background: #2b8a3e;
+    color: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .danh-gia-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .danh-gia-item {
+    background: #f1f1f1;
+    padding: 15px;
+    border-left: 4px solid #2b8a3e;
+  }
+  
+  .gioi-thieu-footer {
+    background: #2b8a3e;
+    color: #fff;
+    padding: 30px 20px;
+  }
+  
+  .gioi-thieu-button {
+    background: #fff;
+    color: #2b8a3e;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  
+  .gioi-thieu-button:hover {
+    background: #ccc;
+  }
+  

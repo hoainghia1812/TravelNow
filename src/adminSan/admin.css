@@ -1,0 +1,24 @@
+.admin-container {
+  display: flex;
+}
+
+.admin-sidebar {
+  background-color: #f8f9fa;
+  height: 100vh;
+  padding: 20px;
+}
+
+.admin-nav .nav-link {
+  color: #333;
+  margin: 10px 0;
+}
+
+.admin-nav .nav-link:hover {
+  background-color: #e9ecef;
+  border-radius: 5px;
+}
+
+.admin-content {
+  padding: 20px;
+  background-color: #f1f1f1;
+}

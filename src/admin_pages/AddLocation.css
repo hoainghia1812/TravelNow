@@ -1,0 +1,42 @@
+.form-grid {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .form-column {
+    width: 48%; /* Chia đều không gian cho mỗi cột */
+  }
+  
+  .create-invoice-button-one {
+    margin-top: 20px;
+    margin-right: 10px;
+  }
+  
+  .invoice-list-one {
+    margin-top: 40px;
+  }
+  .invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .invoice-table th, .invoice-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .invoice-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .invoice-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .invoice-table tr:hover {
+    background-color: #ddd;
+  }
+  

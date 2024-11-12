@@ -1,0 +1,57 @@
+.schedule-table {
+    width: 100%;
+    border-collapse: separate; /* Giữ các đường kẻ tách biệt */
+    border-spacing: 0 10px; /* Khoảng cách giữa các hàng */
+    margin-top: 20px;
+  }
+  
+  .schedule-table th, .schedule-table td {
+    border: 1px solid #ddd;
+    padding: 12px 15px; /* Tăng khoảng cách giữa nội dung và đường kẻ */
+  }
+  
+  .schedule-table th {
+    background-color: #f2f2f2;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .schedule-table td {
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Thêm bóng để tạo độ nổi */
+  }
+  
+  .schedule-table td:first-child, 
+  .schedule-table th:first-child {
+    border-left: none; /* Loại bỏ đường viền trái của cột đầu tiên */
+  }
+  
+  .schedule-table td:last-child, 
+  .schedule-table th:last-child {
+    border-right: none; /* Loại bỏ đường viền phải của cột cuối cùng */
+  }
+  
+  .schedule-table button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .schedule-table button:hover {
+    background-color: #45a049;
+  }
+  
+  .schedule-table button.delete {
+    background-color: #f44336; /* Màu cho nút xóa */
+  }
+  
+  .schedule-table button.delete:hover {
+    background-color: #e53935;
+  }
+  

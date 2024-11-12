@@ -1,0 +1,98 @@
+/* Container chính */
+.tourchitiet-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Banner */
+.tour-banner img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Tiêu đề */
+.tour-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Đánh giá */
+.tour-rating {
+  font-size: 16px;
+  color: #ffaa00;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* Chi tiết tour chia 2 cột */
+.tour-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 16px;
+  color: #555;
+}
+
+.tour-details-item {
+  flex: 1 1 45%; /* Chiếm 45% không gian để chia đều hai bên */
+  display: flex;
+  align-items: center;
+}
+
+.tour-details-item strong {
+  color: #333;
+  width: 120px;
+  margin-right: 10px;
+}
+
+/* Nút Xem lịch trình */
+.view-schedule {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.schedule-link {
+  background-color: #1e90ff;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.schedule-link:hover {
+  background-color: #1c86ee;
+}
+
+/* Modal Lịch Trình */
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

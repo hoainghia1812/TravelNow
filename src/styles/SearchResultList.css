@@ -1,0 +1,317 @@
+/* Pagination Styles */
+.new-pagination span {
+  width: 2rem;
+  height: 2rem;
+  padding: 5px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--secondary-color);
+  color: var(--heading-color);
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.new-active__page {
+  background: var(--secondary-color);
+  color: #fff !important;
+}
+
+/* Tour Card Styles */
+.new-tour__img img {
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+}
+
+.new-card {
+  border: none !important;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+}
+
+.new-tour__img {
+  position: relative;
+}
+
+.new-tour__img span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: max-content;
+  height: max-content;
+  z-index: 10;
+  background: var(--primary-color);
+  color: #fff;
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px 0 0 0;
+}
+
+.new-card__top span i {
+  color: var(--secondary-color);
+}
+
+.new-tour__rating {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.new-tour__location {
+  color: var(--heading-color);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.new-tour__rating i,
+.new-tour__location i {
+  font-size: 1rem;
+}
+
+.new-tour__title {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.new-tour__title a {
+  text-decoration: none;
+  color: var(--heading-color);
+  transition: 0.3s;
+}
+
+.new-tour__title a:hover {
+  color: var(--secondary-color);
+}
+
+.new-card__bottom h5 {
+  color: var(--secondary-color);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.new-card__bottom h5 span {
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 0.8rem;
+}
+
+.new-booking__btn {
+  background: var(--secondary-color) !important;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem !important;
+}
+
+.new-booking__btn a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.new-booking__btn a:hover {
+  color: #fff;
+}
+
+.new-edit__btn {
+  background: var(--primary-color) !important;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem !important;
+}
+
+.new-edit__btn a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.new-edit__btn a:hover {
+  color: #fff;
+}
+
+.new-itinerary {
+  margin-top: 1rem;
+}
+
+.new-itinerary h6 {
+  font-weight: bold;
+}
+
+.new-itinerary ul {
+  padding-left: 1rem;
+}
+
+.new-itinerary li {
+  list-style-type: disc;
+}
+
+/* Container Styles */
+.new-search-results-container {
+  padding: 2rem 1rem;
+  background-color: #f8f9fa;
+}
+
+/* Row Styles */
+.new-search-results-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the content */
+  gap: 1rem; /* Add gap between columns */
+}
+
+/* Column Styles */
+.new-search-results-col {
+  margin-bottom: 2rem;
+  flex: 0 1 calc(25% - 1rem); /* Adjust width to 25% and include gap */
+}
+
+/* No Results Message */
+.new-no-results-message {
+  text-align: center;
+  color: #6c757d;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+
+/* Card Styles */
+.new-card {
+  border: none !important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.new-card:hover {
+  transform: translateY(-10px);
+}
+
+.new-tour-img img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
+}
+
+.new-tour-img span.new-featured {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--primary-color);
+  color: #fff;
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px 0 0 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Card Body Styles */
+.new-card-body {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 0 0 5px 5px;
+}
+
+.new-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.new-tour-location {
+  color: var(--primary-color);
+  font-size: 0.9rem;
+}
+
+.new-tour-rating {
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+}
+
+/* Tour Title Styles */
+.new-tour-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.new-tour-title a {
+  text-decoration: none;
+  color: var(--heading-color);
+  transition: color 0.3s;
+}
+
+.new-tour-title a:hover {
+  color: var(--primary-color);
+}
+
+/* Card Bottom Styles */
+.new-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.new-card-bottom h5 {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.new-card-bottom h5 span {
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 0.8rem;
+}
+
+/* Button Styles */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.new-booking-btn {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.new-booking-btn:hover {
+  background: var(--secondary-color);
+}
+
+.new-booking-btn a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.new-booking-btn a:hover {
+  color: #fff;
+}
+/* Ensure the correct class names */
+.btn.new-booking-btn {
+  background: var(--primary-color) !important;
+  color: #fff !important;
+  padding: 0.2rem 0.5rem !important;
+  text-decoration: none !important;
+}
+
+/* Hover state */
+.btn.new-booking-btn:hover {
+  background: var(--secondary-color) !important;
+  color: #fff !important;
+}
+
+/* Link inside the button */
+.new-booking-btn a {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+/* Link hover state */
+.new-booking-btn a:hover {
+  color: #fff !important;
+}

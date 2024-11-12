@@ -1,0 +1,69 @@
+.search__bar {
+  padding: 0.4rem 1rem; /* Giảm padding để giảm chiều cao */
+  border-radius: 50px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background: #ffffff;
+  width: 100%;
+  max-width: 600px;
+  margin: 50px auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form__group {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem; /* Giảm khoảng cách giữa các phần tử trong nhóm */
+}
+
+.form__group span {
+  font-size: 1.4rem; /* Giảm kích thước icon */
+  color: #ff5a5f;
+}
+
+.form__group input {
+  border: none;
+  font-size: 0.9rem; /* Giảm kích thước chữ */
+  color: #333;
+  font-weight: 500;
+  width: 100%;
+  padding: 0.2rem 0; /* Giảm padding để giảm chiều cao */
+}
+
+.form__group input:focus {
+  outline: none;
+}
+
+.search__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  padding: 0.4rem; /* Giảm padding để giảm chiều cao icon */
+  background: #ff5a5f;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.search__icon:hover {
+  background: #ff7e01;
+}
+
+.add-tour-button {
+  background: #ff5a5f;
+  color: #fff;
+  padding: 0.4rem 0.8rem; /* Giảm padding để giảm chiều cao nút */
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-left: 1.5rem;
+  transition: background 0.3s ease;
+}
+
+.add-tour-button:hover {
+  background: #ff7e01;
+}
