@@ -1,5 +1,3 @@
-
-
 // import React, { useEffect, useState } from 'react';
 // import jwt_decode from 'jwt-decode';
 // import { useSearchParams, useNavigate } from 'react-router-dom';
@@ -85,25 +83,24 @@ const Token = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = searchParams.get('Token') || localStorage.getItem('Token'); // Lấy token từ URL hoặc từ localStorage
+    const token = searchParams.get('Token');
 
     if (token) {
-      setCookie('Token', token);
-      localStorage.setItem('Token', token); // Lưu token vào localStorage để duy trì trạng thái
-
+      setCookie('Token', token); 
       try {
         const decoded = jwt_decode(token);
         const { email, role } = decoded;
+
         setUserData({ email, role });
 
-        // Fetch user data từ API để kiểm tra xem email có tồn tại không
+        // Fetch user data from the API to check if the email exists
         axios.get('https://tourdulich-bheqa4hpbgbjdrey.southeastasia-01.azurewebsites.net/user/NguoiDung')
           .then((response) => {
             const users = response.data;
             const userExists = users.some((user) => user.email === email);
 
             if (role === 'partner') {
-              navigate('/dkct');
+              navigate('/register');
             } else if (userExists) {
               navigate('/login');
             } else {
@@ -115,10 +112,9 @@ const Token = () => {
           });
       } catch (error) {
         console.error('Invalid token:', error.message);
-        localStorage.removeItem('Token'); // Xóa token nếu không hợp lệ
       }
     } else {
-      console.log('Không có token trong URL hoặc localStorage');
+      console.log('Không có token trong URL');
     }
   }, [searchParams, navigate]);
 
@@ -136,7 +132,26 @@ const setCookie = (name, value, days = 1) => {
   document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
 };
 
-// Component hiển thị thông tin người dùng
+// Helper function to remove a cookie
+const removeCookie = (name) => {
+  document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
+};
+
+// Login function to set token cookie
+const Login = (token) => {
+  if (token) {
+    setCookie('Token', token); // Set the token in the cookie
+    console.log('Đăng nhập thành công!');
+  }
+};
+
+// Logout function to clear token cookie
+const Logout = () => {
+  removeCookie('Token'); // Clear the token from the cookie
+  console.log('Đã đăng xuất!');
+};
+
+// Component to display user info
 const UserInfo = ({ email, role }) => (
   <div style={{ padding: '20px', border: '1px solid #ddd', borderRadius: '5px', maxWidth: '300px', margin: '20px auto' }}>
     <h3>Thông tin người dùng</h3>
@@ -145,4 +160,5 @@ const UserInfo = ({ email, role }) => (
   </div>
 );
 
+export { Login, Logout };
 export default Token;

@@ -89,7 +89,7 @@ const AddInvoice = () => {
         });
 
         setInvoices(prevInvoices => [...prevInvoices, response.data]);
-        alert("Chi tiết tour được thêm thành công!");
+        toast("Chi tiết tour được thêm thành công!");
 
         setInvoiceData({
           gia: "",

@@ -5,6 +5,8 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useAuth } from '../../context/AuthContext.jsx';
 import logo from "../../assets/images/logo.png";
 import "./header.css";
+import Cookies from "js-cookie"; // Import thư viện js-cookie
+
 import { sso } from '../../../sso.js';
 
 const nav__links = [
@@ -44,7 +46,7 @@ const adminLinks = [
 
 const Header = () => {
   const headerRef = useRef(null);
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuth(); // Giả sử setUserData được dùng để cập nhật trạng thái người dùng
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
@@ -52,10 +54,12 @@ const Header = () => {
 
   const handleLogout = () => {
     
-      localStorage.removeItem('Token'); // Xóa token khỏi localStorage
-      setUserData(null); // Xóa dữ liệu người dùng khỏi state
-      navigate('/login'); // Điều hướng về trang đăng nhập
-    };
+    Cookies.remove('Token'); 
+
+    logout();
+
+    navigate('/home'); 
+       };
     
 
 

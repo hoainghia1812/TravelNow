@@ -38,6 +38,7 @@ import TourGiaDinh from "../LoaiTour/TourGiaDinh";
 import DatTour from "../pages/DatTour";
 import GioiThieu from "../pages/GioiThieu";
 import Token from "../pages/Token";
+import Phieudattour from "../pages/Phieudattour";
 const Routers = () => {
   return (
     <Routes>
@@ -78,10 +79,11 @@ const Routers = () => {
       <Route path="/khieunai" element={<KhieuNai/>} />
       <Route path="/quanlynguoidung" element={<QuanLyNguoiDung/>} />
       <Route path="/chietkhau" element={<ChietKhau/>} />
-      <Route path="/dattour" element={<DatTour/>} />
+      <Route path="/dattour/:maPhieu" element={<DatTour/>} />
       <Route path="/gioithieu" element={<GioiThieu/>} />
       <Route path="/token" element={<Token/>} />  
-    </Routes>
+      <Route path="/phieudattour/:maPhieu" element={<Phieudattour />} />
+      </Routes>
   );
 };
 
