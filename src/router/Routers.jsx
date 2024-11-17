@@ -4,7 +4,6 @@ import Tour from "../pages/Tour";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import DKCongTy from "../pages/DKCongTy";
-// import SearchResultList from "../pages/SearchResultList";
 import ThankYou from "../pages/ThankYou";
 import Profile from "../pages/Profile";
 import AddTour from "../admin_pages/AddTour";
@@ -14,8 +13,6 @@ import AdminPage from "../admin_pages/AdminPage";
 import AddLocation from "../admin_pages/AddLocation";
 import BookingDetails from "../pages/BookingDetails";
 import EditTour from "../admin_pages/EditTour";
-// import ActiveTours from "../admin_pages/ActiveTours";
-// import UnactiveTours from "../admin_pages/UnActiveTours";
 import ActiveToursItinerary from "../pages/ActiveToursItinerary";
 import BookingCancelled from "../pages/BookingCancelled";
 import UpdateCategory from "../admin_pages/UpdateCategory";
@@ -38,6 +35,7 @@ import TourGiaDinh from "../LoaiTour/TourGiaDinh";
 import DatTour from "../pages/DatTour";
 import GioiThieu from "../pages/GioiThieu";
 import Token from "../pages/Token";
+import HoaDon from "../pages/HoaDon";
 import Phieudattour from "../pages/Phieudattour";
 const Routers = () => {
   return (
@@ -52,7 +50,6 @@ const Routers = () => {
       <Route path="/profile" element={<Profile />} />
       <Route path="/register" element={<Register />} />
       <Route path="/thank-you" element={<ThankYou />} />
-      {/* <Route path="/tours/search" element={<SearchResultList />} /> */}
       <Route path="/travelnow" element={<Admin />} />
       <Route path="/admin" element={<AdminPage />} />
       <Route path="/add-tour" element={<AddTour />} />
@@ -61,8 +58,6 @@ const Routers = () => {
       <Route path="/add-location" element={<AddLocation />} />
       <Route path="/booking-details" element={<BookingDetails />} />
       <Route path="/tours/edit/:tourId" element={<EditTour />} />
-      {/* <Route path="/tours/active" element={<ActiveTours />} /> */}
-      {/* <Route path="/tours/unactive" element={<UnactiveTours />} /> */}
       <Route path="/active-tours-itinerary" element={<ActiveToursItinerary />} />
       <Route path="/booking-canceled" element={<BookingCancelled />} />
       <Route path="/update-location/:id" element={<UpdateLocation />} />
@@ -83,6 +78,7 @@ const Routers = () => {
       <Route path="/gioithieu" element={<GioiThieu/>} />
       <Route path="/token" element={<Token/>} />  
       <Route path="/phieudattour/:maPhieu" element={<Phieudattour />} />
+      <Route path="/hoadon/:maPhieu" element={<HoaDon/>} />
       </Routes>
   );
 };

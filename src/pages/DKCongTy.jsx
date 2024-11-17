@@ -1,119 +1,166 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Form, FormGroup, Label, Input, Button, Table } from 'reactstrap';
-import { useNavigate } from 'react-router-dom';
 
-const DKCongTy = () => {
-  const [diaChi, setDiaChi] = useState('');
-  const [sdtCongTy, setSdtCongTy] = useState('');
-  const [tenCongTy, setTenCongTy] = useState('');
-  const navigate = useNavigate(); // Sử dụng useNavigate
+import { useEffect, useState } from "react";
+import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
+import { useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import axios from "axios";
+import userIcon from "../assets/images/user.png";
+import "../styles/login.css";
 
-  // Hàm gọi API để thêm công ty mới
-  const addCompany = async (newCompany) => {
-    try {
-      const response = await fetch('https://tourdulich-bheqa4hpbgbjdrey.southeastasia-01.azurewebsites.net/company/CongtyTour', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newCompany),
-      });
+const DkCongTy = () => {
+  const [thông_tin, setThông_tin] = useState({
+    số_điện_thoại: "",
+    giới_tính: "",
+    địa_chỉ: "",
+    trạngThai: null,
+  });
 
-      if (!response.ok) {
-        throw new Error('Có lỗi xảy ra khi thêm công ty');
-      }
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState(0);
+  const [hoten, setHoten] = useState(""); // Chỉ hiển thị "name"
+  const navigate = useNavigate();
 
-      const data = await response.json();
-      return data; // Dữ liệu của công ty mới
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Không thể thêm công ty. Vui lòng kiểm tra lại.');
+  useEffect(() => {
+    const token = getCookie("Token");
+    if (token) {
+      const decoded = jwt_decode(token);
+      console.log("Decoded token:", decoded);
+
+      // Lấy giá trị "name" từ token
+      setHoten(decoded.name || ""); 
+
+      // Lấy email và vai trò từ token
+      setEmail(decoded.email || "");
+      setRole(decoded.role === "partner" ? 1 : 0);
+    } else {
+      console.log("Không có token trong cookie");
+    }
+  }, []);
+
+  const handleChange = (e) => {
+    if (e.target.id === "email") {
+      setEmail(e.target.value);
+    } else if (e.target.id === "tên") {
+      setHoten(e.target.value);
+    } else {
+      setThông_tin((prev) => ({ ...prev, [e.target.id]: e.target.value }));
     }
   };
 
-  // Hàm gọi API để lấy danh sách công ty
-  
-
- 
-
-  // Hàm gọi API để cập nhật thông tin công ty
-  
-  const handleSubmit = async (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
+  
+    if (!email) {
+      alert("Email không hợp lệ");
+      return;
+    }
+  
+    // Tạo payload với các giá trị mặc định
+    const payload = {
+      sdtNguoiDung: thông_tin.số_điện_thoại,
+      gioiTinh: thông_tin.giới_tính || "Nam", // Mặc định là "Nam" nếu không nhập
+      ngaySinh: "2004-06-20", // Mặc định là ngày sinh
+      hoVaTen: hoten,
+      diaChi: thông_tin.địa_chỉ,
+      email: email.trim(),
+      role: role,
+      trạngThái: thông_tin.trạngThái || null,
+    };
+  
+    console.log("Dữ liệu gửi đi:", JSON.stringify(payload, null, 2));
+  
+    try {
+      await axios.post(
+        "https://tourdulich-bheqa4hpbgbjdrey.southeastasia-01.azurewebsites.net/user/NguoiDung",
+        payload
+      );
+      alert("Đăng ký thành công!");
+      navigate("/login");
+    } catch (err) {
+      console.error("Lỗi khi gửi dữ liệu:", err.response?.data || err.message);
+      alert("Đăng ký thất bại: " + (err.response?.data || "Có lỗi khi gửi yêu cầu"));
+    }
+  };
+  
 
-    // Kiểm tra dữ liệu trước khi gửi
-    console.log('Dia Chi:', diaChi);
-    console.log('Sdt Cong Ty:', sdtCongTy);
-    console.log('Ten Cong Ty:', tenCongTy);
-
-    
-    
-    // Xóa các trường nhập liệu sau khi thêm hoặc cập nhật công ty
-    setDiaChi('');
-    setSdtCongTy('');
-    setTenCongTy('');
-
-    // Gọi hàm fetchCompanies để cập nhật danh sách công ty
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
   };
 
-  // Hàm để khởi tạo dữ liệu khi bắt đầu chỉnh sửa
- 
-  useEffect(() => {
-  }, []);
+  const ảnh_đăng_ký = "https://dulichtoday.vn/wp-content/uploads/2017/04/vinh-Ha-Long.jpg";
 
   return (
-    <Container className="mt-5">
-      <Row>
-        
-      </Row>
-      <Row className="justify-content-center">
-        <Col md="6">
-          <Form onSubmit={handleSubmit}>
-            <FormGroup>
-              <Label for="tenCongTy">Tên Công Ty</Label>
-              <Input 
-                type="text" 
-                name="tenCongTy" 
-                id="tenCongTy" 
-                placeholder="Nhập tên công ty" 
-                value={tenCongTy}
-                onChange={(e) => setTenCongTy(e.target.value)} 
-                required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="diaChi">Địa Chỉ</Label>
-              <Input 
-                type="text" 
-                name="diaChi" 
-                id="diaChi" 
-                placeholder="Nhập địa chỉ" 
-                value={diaChi}
-                onChange={(e) => setDiaChi(e.target.value)} 
-                required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="sdtCongTy">Số Điện Thoại Công Ty</Label>
-              <Input 
-                type="text" 
-                name="sdtCongTy" 
-                id="sdtCongTy" 
-                placeholder="Nhập số điện thoại" 
-                value={sdtCongTy}
-                onChange={(e) => setSdtCongTy(e.target.value)} 
-                required
-              />
-            </FormGroup>
-            <Button color="primary" type="submit" block>
-              Đăng ký công ty
-            </Button>
-          </Form>
-          
-        </Col>
-      </Row>
-    </Container>
+    <section>
+      <Container>
+        <Row>
+          <Col lg="8" className="m-auto">
+            <div className="login__container d-flex justify-content-between">
+              <div className="login__img">
+                <img src={ảnh_đăng_ký} alt="" />
+              </div>
+              <div className="login__form">
+                <div className="user">
+                  <img src={userIcon} alt="" />
+                </div>
+                <h2>Đăng Ký</h2>
+                <Form onSubmit={handleClick}>
+                  <FormGroup>
+                    <input
+                      type="text"
+                      placeholder="Tên công ty"
+                      required
+                      id="tên"
+                      value={hoten} // Hiển thị trực tiếp giá trị "name"
+                      onChange={handleChange}
+                      readOnly
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <input
+                      type="text"
+                      placeholder="Số Điện Thoại"
+                      required
+                      id="số_điện_thoại"
+                      value={thông_tin.số_điện_thoại}
+                      pattern="^0[0-9]{9}$"
+                      title="Số điện thoại phải ở định dạng 0937195324"
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <input
+                      type="email"
+                      placeholder="Gmail"
+                      required
+                      id="email"
+                      value={email}
+                      onChange={handleChange}
+                      readOnly
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <input
+                      type="text"
+                      placeholder="Địa chỉ"
+                      required
+                      id="địa_chỉ"
+                      value={thông_tin.địa_chỉ}
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
+                  <Button className="btn secondary__btn auth__btn" type="submit">
+                    Tạo Tài Khoản
+                  </Button>
+                </Form>
+              </div>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </section>
   );
 };
 
-export default DKCongTy;
+export default DkCongTy;

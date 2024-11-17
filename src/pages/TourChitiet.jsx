@@ -15,12 +15,14 @@ const TourChitiet = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showSchedule, setShowSchedule] = useState(false);
+  const [dongia, setgia] = useState(null);
 
   useEffect(() => {
     const fetchTourDetail = async () => {
       try {
         const response = await axios.get(`https://tourdulich-bheqa4hpbgbjdrey.southeastasia-01.azurewebsites.net/api/ChiTietTour/tour/${maTour}`);
         setTourDetail(response.data);
+        setgia(response.data.gia);
         setLoading(false);
       } catch (err) {
         setError(err);
@@ -61,15 +63,15 @@ const TourChitiet = () => {
   const handleDattour = async () => {
     if (user) {
       const bookingDetails = {
-        maPhieu: "PD01", 
-        ngayDat: new Date().toISOString().split('T')[0], 
-        donGia: 0,
-        soLuongNguoiDi: 0,
-        voucher: "Chưa có", 
-        trangThaiThanhToan: "Chưa thanh toán",
-        trangThaiHuy: null,
-        sdtNguoiDung: sdtNguoiDung, 
-        maTour: maTour, 
+        maPhieu: "PD01", // Tạm thời sử dụng mã giả
+        ngayDat: new Date().toISOString().split('T')[0], // Ngày đặt
+        donGia: dongia, // Sử dụng giá trị 'dongia' đã lấy từ tourDetail
+        soLuongNguoiDi: 0, // Cần cập nhật số lượng người đặt
+        voucher: "Chưa có", // Tạm thời đặt mặc định
+        trangThaiThanhToan: "Chưa thanh toán", // Trạng thái mặc định
+        trangThaiHuy: null, // Chưa hủy
+        sdtNguoiDung: sdtNguoiDung, // Số điện thoại người dùng
+        maTour: maTour, // Mã tour được truyền qua URL
       };
 
       try {
@@ -78,9 +80,8 @@ const TourChitiet = () => {
           const maPhieu = response.data.maPhieu;
           toast.success("Đặt tour thành công!");
           setTimeout(() => {
-              navigate(`/dattour/${maPhieu} `);
-              
-          }, 500); 
+            navigate(`/dattour/${maPhieu}`);
+          }, 500);
         }
       } catch (error) {
         toast.error("Lỗi khi đặt tour: " + error.message);
