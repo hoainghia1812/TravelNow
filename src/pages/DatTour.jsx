@@ -1,56 +1,97 @@
+
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom'; // Lấy tham số từ URL
 import axios from 'axios';
 import './DatTour.css';
-
 const DatTour = () => {
-  const { maPhieu } = useParams();
+  const { maPhieu } = useParams(); // Lấy maPhieu từ URL
+  const [numAdults, setNumAdults] = useState(0);
   const navigate = useNavigate();
 
-  const [numAdults, setNumAdults] = useState(0);
   const [numChildren, setNumChildren] = useState(0);
   const [showForms, setShowForms] = useState(false);
-  const [formData, setFormData] = useState({ adults: [], children: [] });
-
+  const [formData, setFormData] = useState({
+    adults: [],
+    children: []
+  });
   const handleSetNumAdults = (e) => setNumAdults(parseInt(e.target.value) || 0);
   const handleSetNumChildren = (e) => setNumChildren(parseInt(e.target.value) || 0);
-
   const handleDatTour = () => {
     setShowForms(true);
   };
-
   const handleFormChange = (e, index, type) => {
     const { name, value } = e.target;
     const newFormData = { ...formData };
-
     if (type === 'adult') {
       if (!newFormData.adults[index]) {
         newFormData.adults[index] = {};
       }
-      newFormData.adults[index] = { ...newFormData.adults[index], [name]: value, MaPhieu: maPhieu, maNguoiDi: '' };
+      newFormData.adults[index] = {
+        ...newFormData.adults[index],
+        [name]: value,
+        MaPhieu: maPhieu, // Sử dụng maPhieu từ URL
+        maNguoiDi: '', // Tạo mã người đi tự động
+      };
     } else {
       if (!newFormData.children[index]) {
         newFormData.children[index] = {};
       }
-      newFormData.children[index] = { ...newFormData.children[index], [name]: value, MaPhieu: maPhieu, maNguoiDi: '' };
+      newFormData.children[index] = {
+        ...newFormData.children[index],
+        [name]: value,
+        MaPhieu: maPhieu, // Sử dụng maPhieu từ URL
+        maNguoiDi: '', // Tạo mã người đi tự động
+      };
     }
-
     setFormData(newFormData);
   };
-
   const handleSubmit = async () => {
     const participants = [...formData.adults, ...formData.children];
-  
-    // Kiểm tra thông tin người tham gia
     for (const participant of participants) {
       if (!participant.fullName || !participant.gender || !participant.dob || !participant.phoneNumber) {
         alert(`Vui lòng điền đầy đủ thông tin cho tất cả người đi`);
         return;
       }
     }
+    for (let i = 0; i < participants.length; i++) {
+      const participant = {
+        maNguoiDi: participants[i].maNguoiDi || '', 
+        tenNguoiDi: participants[i].fullName || '',
+        gioiTinh: participants[i].gender || '',
+        ngaySinh: participants[i].dob || '',
+        sdtNguoiDi: participants[i].phoneNumber || '',
+        maPhieu: participants[i].MaPhieu || maPhieu, // Sử dụng maPhieu từ URL
+      };
   
-    // Tính tổng số người
-    const totalPeople = numAdults + numChildren;
+      // Kiểm tra và log để chắc chắn maPhieu có tồn tại
+      console.log('maPhieu trong đối tượng participant:', participant.maPhieu);
+  
+      // Kiểm tra các trường thông tin bắt buộc
+      if (!participant.tenNguoiDi || !participant.gioiTinh || !participant.ngaySinh || !participant.sdtNguoiDi) {
+        alert(`Vui lòng điền đầy đủ thông tin cho tất cả người đi`);
+        return;
+      }
+  
+      try {
+        const response = await axios.post(
+          'https://tourdulich-bheqa4hpbgbjdrey.southeastasia-01.azurewebsites.net/participants/Nguoidi',
+          participant,
+          { headers: { 'Content-Type': 'application/json' } }
+        );
+  
+        if (response.status === 200) {
+          console.log(`Thêm người đi thành công: ${participant.tenNguoiDi}`);
+        }
+      } catch (error) {
+        if (error.response) {
+          console.error('API Error:', error.response.data);
+          alert(`Có lỗi xảy ra khi thêm ${participant.tenNguoiDi}. ${error.response.data.title}`);
+        } else {
+          console.error('Unknown error:', error);
+          alert(`Có lỗi xảy ra khi thêm ${participant.tenNguoiDi}.`);
+        }
+      }
+      const totalPeople = numAdults + numChildren;
   
     try {
       // Gọi API để lấy phiếu đặt tour
@@ -88,9 +129,9 @@ const DatTour = () => {
       console.error("Lỗi khi cập nhật phiếu:", error);
       alert("Có lỗi xảy ra khi cập nhật phiếu đặt tour.");
     }
+    }
   };
   
-
   const renderFormFields = (count, label, type) => (
     Array.from({ length: count }).map((_, i) => (
       <div key={`${label}-${i}`} className="form-section">
@@ -131,7 +172,7 @@ const DatTour = () => {
           <label>Số điện thoại:</label>
           <input
             type="tel"
-            placeholder="Nhập số điện thoại (Nếu có)"
+            placeholder="Nhập số điện thoại(Nếu có)"
             pattern="^0\d{9}$"
             minLength="10"
             maxLength="10"
@@ -143,7 +184,6 @@ const DatTour = () => {
       </div>
     ))
   );
-
   return (
     <div className="dat-tour-container">
       <h2>Đặt Tour</h2>
@@ -166,12 +206,10 @@ const DatTour = () => {
           {renderFormFields(numChildren, 'Trẻ nhỏ', 'child')}
         </div>
       )}
-
       {showForms && (
         <button onClick={handleSubmit} className="submit-button">Lưu thông tin và Đặt Tour</button>
       )}
     </div>
   );
 };
-
 export default DatTour;
