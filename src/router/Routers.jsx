@@ -37,6 +37,7 @@ import GioiThieu from "../pages/GioiThieu";
 import Token from "../pages/Token";
 import HoaDon from "../pages/HoaDon";
 import Phieudattour from "../pages/Phieudattour";
+import QlDatTour from "../adminSan/QlDatTour";
 const Routers = () => {
   return (
     <Routes>
@@ -79,6 +80,7 @@ const Routers = () => {
       <Route path="/token" element={<Token/>} />  
       <Route path="/phieudattour/:maPhieu" element={<Phieudattour />} />
       <Route path="/hoadon/:maPhieu" element={<HoaDon/>} />
+      <Route path="/qldattour" element={<QlDatTour/>} />
       </Routes>
   );
 };
