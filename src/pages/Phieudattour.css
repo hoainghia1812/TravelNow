@@ -8,6 +8,10 @@
   font-family: Arial, sans-serif;
   color: #333;
 }
+.countdown-timer-text {
+  color: red; /* Đặt màu chữ là đỏ */
+  font-weight: bold; /* Bạn có thể tùy chỉnh thêm kiểu chữ nếu cần */
+}
 
 .phieu-dat-tour-title {
   text-align: center;
@@ -76,12 +80,12 @@
   font-size: 16px;
   font-weight: 600;
   text-align: center;
-  border-radius: 50px;  /* Làm tròn góc */
-  border: 2px solid transparent;  /* Không có viền ban đầu */
+  border-radius: 50px; /* Làm tròn góc */
+  border: 2px solid transparent; /* Không có viền ban đầu */
   cursor: pointer;
-  transition: all 0.3s ease;  /* Chuyển tiếp mượt mà */
-  text-transform: uppercase;  /* Chữ in hoa */
-  letter-spacing: 1px;  /* Khoảng cách chữ */
+  transition: all 0.3s ease; /* Chuyển tiếp mượt mà */
+  text-transform: uppercase; /* Chữ in hoa */
+  letter-spacing: 1px; /* Khoảng cách chữ */
 }
 
 /* Kiểu dáng cho nút thanh toán */
@@ -89,19 +93,19 @@
 /* Hiệu ứng hover: đổi màu nền, thay đổi bóng đổ và phóng to */
 .btn-pay:hover {
   background-color: #45a049;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);  /* Bóng đổ mạnh hơn */
-  transform: scale(1.05);  /* Phóng to nút khi hover */
-  border-color: #388e3c;  /* Đổi màu viền khi hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Bóng đổ mạnh hơn */
+  transform: scale(1.05); /* Phóng to nút khi hover */
+  border-color: #388e3c; /* Đổi màu viền khi hover */
 }
 
 /* Hiệu ứng khi nhấn vào nút */
 .btn-pay:active {
-  transform: scale(0.98);  /* Thu nhỏ nút khi nhấn */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Quay lại bóng đổ ban đầu */
+  transform: scale(0.98); /* Thu nhỏ nút khi nhấn */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Quay lại bóng đổ ban đầu */
 }
 
 /* Hiệu ứng focus */
 .btn:focus {
-  outline: none;  /* Xóa viền focus mặc định */
-  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.4);  /* Viền focus màu xanh lá */
+  outline: none; /* Xóa viền focus mặc định */
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.4); /* Viền focus màu xanh lá */
 }

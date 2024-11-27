@@ -11,7 +11,28 @@
   font-size: 1em;
   color: #333;
 }
+.error {
+  background-color: #f8d7da; /* Màu nền sáng cho thông báo lỗi */
+  color: #721c24; /* Màu chữ tối cho độ tương phản tốt */
+  border: 1px solid #f5c6cb; /* Đường viền nhẹ */
+  border-radius: 5px; /* Bo tròn góc */
+  padding: 15px; /* Khoảng cách bên trong */
+  margin: 20px 0; /* Khoảng cách phía trên và dưới */
+  font-size: 16px; /* Kích thước chữ */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  align-items: center; /* Căn giữa dọc */
+}
 
+.error span {
+  font-weight: bold; /* Làm nổi bật số điện thoại */
+  color: #155724; /* Màu xanh lá cho số điện thoại */
+  margin-left: 5px; /* Khoảng cách giữa chữ và số điện thoại */
+}
+
+.error:hover {
+  background-color: #f5c6cb; /* Thay đổi màu nền khi hover */
+  transition: background-color 0.3s; /* Hiệu ứng chuyển màu mượt mà */
+}
 .toast-buttons {
   display: flex;
   gap: 10px;
