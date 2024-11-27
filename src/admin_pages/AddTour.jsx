@@ -218,8 +218,8 @@
 import { useState, useEffect } from "react";
 import { Col, Row, Card, CardBody, Container, Button } from "reactstrap";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import CSS của react-toastify
+import { toast ,ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddTour = () => {
   const [tourData, setTourData] = useState({
@@ -309,7 +309,7 @@ const AddTour = () => {
 
   return (
     <Container>
-      <ToastContainer /> {/* Thêm ToastContainer ở đây để hiển thị thông báo */}
+      <ToastContainer /> 
       <Row>
         <Col lg="8">
           <div className="admin-container">
