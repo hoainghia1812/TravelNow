@@ -1,14 +1,40 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './HoaDon.css';
 
-const HoaDon = () => {
-  // Dữ liệu hóa đơn cứng
-  const hoaDon = {
-    MaHoaDon: 'HD001',
-    NgayLap: '2024-11-27T00:00:00',
-    GioLap: '2024-11-27T10:30:00',
-    TongTien: 1500000,
-    MaPhieu: 'MP001',
-  };
+const HoaDon = ({ maPhieu }) => {
+  const [hoaDon, setHoaDon] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchHoaDon = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        // Thay đường dẫn bằng API thực tế của bạn
+        const response = await axios.get(
+          `https://tourdulich-bheqa4hpbgbjdrey.southeastasia-01.azurewebsites.net/bill/HoaDon/${maPhieu}`
+        );
+
+        setHoaDon(response.data);
+      } catch (err) {
+        setError('Không thể lấy thông tin hóa đơn. Vui lòng thử lại.');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (maPhieu) {
+      fetchHoaDon();
+    }
+  }, [maPhieu]);
+
+  if (loading) return <div>Đang tải dữ liệu...</div>;
+  if (error) return <div className="error">{error}</div>;
+  if (!hoaDon) return <div>Không có thông tin hóa đơn.</div>;
 
   return (
     <div className="hoa-don-container">
@@ -16,23 +42,23 @@ const HoaDon = () => {
       <div className="hoa-don-content">
         <div className="hoa-don-item">
           <span className="label">Mã Hóa Đơn:</span>
-          <span className="value">{hoaDon.MaHoaDon}</span>
+          <span className="value">{hoaDon.maHoaDon}</span>
         </div>
         <div className="hoa-don-item">
           <span className="label">Ngày Lập:</span>
-          <span className="value">{new Date(hoaDon.NgayLap).toLocaleDateString()}</span>
+          <span className="value">{new Date(hoaDon.ngayLap).toLocaleDateString()}</span>
         </div>
         <div className="hoa-don-item">
           <span className="label">Giờ Lập:</span>
-          <span className="value">{new Date(hoaDon.GioLap).toLocaleTimeString()}</span>
+          <span className="value">{hoaDon.gioLap}</span>
         </div>
         <div className="hoa-don-item">
           <span className="label">Tổng Tiền:</span>
-          <span className="value">{hoaDon.TongTien.toLocaleString()} VND</span>
+          <span className="value">{hoaDon.tongTien.toLocaleString()} VND</span>
         </div>
         <div className="hoa-don-item">
           <span className="label">Mã Phiếu:</span>
-          <span className="value">{hoaDon.MaPhieu}</span>
+          <span className="value">{hoaDon.maPhieu}</span>
         </div>
       </div>
     </div>
