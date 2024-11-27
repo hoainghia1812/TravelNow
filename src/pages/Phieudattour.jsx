@@ -8,7 +8,7 @@ const Phieudattour = () => {
   const { maPhieu } = useParams();
   const [tenTour, setTenTour] = useState('');
   const location = useLocation();
-  const wowoWallet = new WoWoWallet("NghiaCr7@gmail.com");
+  const wowoWallet = new WoWoWallet("8b21f3b10b65d87b49aa0da7a0ab6d9e4c1596513f1eb1468cabe8730d762804");
 
   const [phieuDatTour, setPhieuDatTour] = useState(null);
 
