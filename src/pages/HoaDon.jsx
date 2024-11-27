@@ -15,12 +15,23 @@ const HoaDon = () => {
         setLoading(true);
         setError(null);
 
-        // Gọi API với maPhieu lấy từ URL
+        // Lấy danh sách hóa đơn từ API
         const response = await axios.get(
-          `https://tourdulich-bheqa4hpbgbjdrey.southeastasia-01.azurewebsites.net/bill/HoaDon/${maPhieu}`
+          'https://tourdulich-bheqa4hpbgbjdrey.southeastasia-01.azurewebsites.net/bill/HoaDon'
         );
 
-        setHoaDon(response.data);
+        const danhSachHoaDon = response.data;
+
+        // Tìm hóa đơn có maPhieu khớp với tham số trên URL
+        const hoaDonTimThay = danhSachHoaDon.find(
+          (hoaDon) => hoaDon.maPhieu === maPhieu
+        );
+
+        if (hoaDonTimThay) {
+          setHoaDon(hoaDonTimThay); // Lưu thông tin hóa đơn vào state
+        } else {
+          setError('Không tìm thấy hóa đơn với mã phiếu này.');
+        }
       } catch (err) {
         setError('Không thể lấy thông tin hóa đơn. Vui lòng thử lại.');
         console.error(err);
@@ -29,9 +40,7 @@ const HoaDon = () => {
       }
     };
 
-    if (maPhieu) {
-      fetchHoaDon();
-    }
+    fetchHoaDon();
   }, [maPhieu]);
 
   if (loading) return <div>Đang tải dữ liệu...</div>;
