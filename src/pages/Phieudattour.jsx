@@ -180,7 +180,7 @@ const Phieudattour = () => {
       ],
       callback: {
         successUrl: `https://tourdulich-bheqa4hpbgbjdrey.southeastasia-01.azurewebsites.net/bill/HoaDon`,
-        returnUrl: `https://travel-now-pink.vercel.app/hoadon/?maPhieu=${maPhieu}`
+        returnUrl: `https://travel-now-pink.vercel.app/hoadon/${maPhieu}`
       }
     };
   
