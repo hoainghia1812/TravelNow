@@ -404,7 +404,7 @@ const Header = () => {
                     <span className="username">{user.hoVaTen}</span>
                     <div className="dropdown-menu">
                       <Link to="/profile" className="dropdown-item">Thông tin tài khoản</Link>
-                      <Link to="/invoices" className="dropdown-item">Lịch sử đặt tour</Link>
+                      <Link to="/lsdt" className="dropdown-item">Lịch sử đặt tour</Link>
                       <span className="dropdown-item" onClick={handleLogout}>Đăng xuất</span>
                     </div>
                   </div>
