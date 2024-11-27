@@ -21,8 +21,11 @@
     const handleNavigateToCk = () => {
       navigate('/chietkhau');
     };
-    const handleNavigateToUser = () => {
-      navigate('/quanlynguoidung');
+    // const handleNavigateToUser = () => {
+    //   navigate('/quanlynguoidung');
+    // };
+    const handleNavigateQLDT = () => {
+      navigate('/qldattour');
     };
     return (
       <Container className="mt-5 admin-container">
@@ -69,10 +72,17 @@
               </CardBody>
             </Card>
           </Col>
-          <Col md="6" lg="4">
+          {/* <Col md="6" lg="4">
             <Card className="mb-4">
               <CardBody className="text-center">
                 <Button color="primary" block onClick={handleNavigateToUser}>Quản lý người dùng</Button>
+              </CardBody>
+            </Card>
+          </Col> */}
+          <Col md="6" lg="4">
+            <Card className="mb-4">
+              <CardBody className="text-center">
+                <Button color="primary" block onClick={handleNavigateQLDT}>Quản lý đặt tour</Button>
               </CardBody>
             </Card>
           </Col>

@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "../../src/pages/LichTrinh.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const LichTrinh = () => {
   const [scheduleData, setScheduleData] = useState({
@@ -63,7 +66,7 @@ const postSchedule = async (newSchedule) => {
     const response = await axios.post('https://tourdulich-bheqa4hpbgbjdrey.southeastasia-01.azurewebsites.net/sc/LichTrinh', newSchedule);
 
     if (response.status === 200 || response.status === 201) {
-      alert('Lịch trình được tạo thành công');
+      toast('Lịch trình được tạo thành công');
       
       // Post each activity with `maLichTrinh` from the created schedule
       const maLichTrinh = response.data.maLichTrinh; // assuming the response includes the created `maLichTrinh`

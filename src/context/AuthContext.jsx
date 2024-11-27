@@ -1,125 +1,44 @@
-// // AuthContext.js
-// import React, { createContext, useState, useEffect, useContext } from 'react';
-// import Cookies from 'js-cookie';
 
-// const AuthContext = createContext();
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
-// export const AuthProvider = ({ children }) => {
-//   const [token, setToken] = useState(null);
-//   const [user, setUser] = useState(null);
-
-//   // Lấy token từ cookie nếu có
-//   const fetchTokenFromCookie = () => {
-//     const savedToken = Cookies.get('authToken');
-//     if (savedToken) {
-//       setToken(savedToken);
-//       decodeToken(savedToken);
-//       con
-//     }
-//   };
-
-//   // Giải mã token để lấy thông tin người dùng
-//   const decodeToken = (token) => {
-//     try {
-//       const payload = JSON.parse(atob(token.split('.')[1]));
-//       setUser({
-//         username: payload.username,
-//         email: payload.email,
-        
-//       });
-//       console.log(payload);
-//     } catch (error) {
-//       console.error('Error decoding token:', error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchTokenFromCookie();
-//   }, []);
-
-//   // Hàm đăng nhập
-//   const login = (token) => {
-//     Cookies.set('authToken', token);  // Lưu token vào cookie
-//     setToken(token);
-//     decodeToken(token);
-//   };
-
-//   // Hàm đăng xuất
-//   const logout = () => {
-//     Cookies.remove('authToken');  // Xóa token khỏi cookie
-//     setToken(null);
-//     setUser(null);
-//   };
-
-//   return (
-//     <AuthContext.Provider value={{ token, user, login, logout }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
-
-// // Hook tùy chỉnh để sử dụng AuthContext trong các component khác
-// export const useAuth = () => useContext(AuthContext);
-
-// AuthContext.js
-import React, { createContext, useState, useEffect, useContext } from 'react';
-import Cookies from 'js-cookie';
-
+// Khởi tạo context
 const AuthContext = createContext();
 
+// Provider để cung cấp giá trị context
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(null);
-  const [user, setUser] = useState(null); // setUser được khai báo tại đây
+    const [user, setUser] = useState(null);
 
-  // Lấy token từ cookie nếu có
-  const fetchTokenFromCookie = () => {
-    const savedToken = Cookies.get('authToken');
-    if (savedToken) {
-      setToken(savedToken);
-      decodeToken(savedToken);
-      console.log(savedToken);
-    }
-  };
+    // Kiểm tra xem có thông tin người dùng trong localStorage không
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));  // Phục hồi thông tin người dùng từ localStorage
+        }
+    }, []);
 
-  // Giải mã token để lấy thông tin người dùng
-  const decodeToken = (token) => {
-    try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      setUser({
-        username: payload.username,
-        email: payload.email,
-      });
-      console.log(payload);
-    } catch (error) {
-      console.error('Error decoding token:', error);
-    }
-  };
+    // Cập nhật localStorage mỗi khi user thay đổi
+    useEffect(() => {
+        if (user) {
+            localStorage.setItem('user', JSON.stringify(user));  // Lưu trạng thái người dùng vào localStorage
+        } else {
+            localStorage.removeItem('user');  // Nếu không có user, xóa khỏi localStorage
+        }
+    }, [user]);
 
-  useEffect(() => {
-    fetchTokenFromCookie();
-  }, []);
+    // Hàm logout: Xóa user khỏi state và localStorage
+    const logout = () => {
+        setUser(null);  // Xóa dữ liệu người dùng khỏi state
+        localStorage.removeItem('user');  // Xóa thông tin người dùng khỏi localStorage
+    };
 
-  // Hàm đăng nhập
-  const login = (token) => {
-    Cookies.set('authToken', token);  
-    setToken(token);
-    decodeToken(token);
-  };
-
-  // Hàm đăng xuất
-  const logout = () => {
-    localStorage.removeItem('Token'); // Xóa token khỏi localStorage
-    setUserData(null); // Xóa dữ liệu người dùng khỏi state
-    navigate('/home'); // Điều hướng về trang đăng nhập
-  };
-  
-
-  return (
-    <AuthContext.Provider value={{ token, user, login, logout, setUser }}>
-      {children}
-    </AuthContext.Provider>
-  );
+    return (
+        <AuthContext.Provider value={{ user, setUser, logout }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
 
-// Hook tùy chỉnh để sử dụng AuthContext trong các component khác
-export const useAuth = () => useContext(AuthContext);
+// Hook để sử dụng context
+export const useAuth = () => {
+    return useContext(AuthContext);
+};
