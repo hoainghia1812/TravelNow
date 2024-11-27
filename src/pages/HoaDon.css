@@ -1,41 +1,38 @@
 .hoa-don-container {
-  width: 100%;
-  max-width: 600px;
-  margin: 50px auto;
+  margin: 20px auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  max-width: 600px;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
 }
 
 .hoa-don-title {
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 1.5em;
   margin-bottom: 20px;
-  color: #2c3e50;
+  text-align: center;
+  color: #333;
 }
 
 .hoa-don-content {
-  font-size: 16px;
-  color: #34495e;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .hoa-don-item {
-  margin: 10px 0;
   display: flex;
   justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
 }
 
-.label {
+.hoa-don-item .label {
   font-weight: bold;
-  color: #7f8c8d;
+  color: #555;
 }
 
-.value {
-  color: #2ecc71;
-}
-
-.hoa-don-item:last-child {
-  margin-bottom: 0;
+.hoa-don-item .value {
+  color: #000;
 }

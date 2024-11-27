@@ -80,6 +80,8 @@ const Routers = () => {
       <Route path="/token" element={<Token/>} />  
       <Route path="/phieudattour/:maPhieu" element={<Phieudattour />} />
       <Route path="/hoadon/:maPhieu" element={<HoaDon/>} />
+      {/* <Route path="/hoadon" element={<HoaDon/>} /> */}
+
       <Route path="/qldattour" element={<QlDatTour/>} />
       </Routes>
   );

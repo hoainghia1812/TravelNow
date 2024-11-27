@@ -1,24 +1,14 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import './HoaDon.css';
 
 const HoaDon = () => {
-  const [hoaDon, setHoaDon] = useState(null);
-
-  useEffect(() => {
-    const fetchHoaDon = async () => {
-      try {
-        // Giả sử bạn có API lấy hóa đơn
-        const response = await axios.get('https://api-your-server.com/hoa-don');
-        setHoaDon(response.data);
-      } catch (error) {
-        console.error("Lỗi khi tải dữ liệu hóa đơn:", error);
-      }
-    };
-    fetchHoaDon();
-  }, []);
-
-  if (!hoaDon) return <p>Đang tải thông tin hóa đơn...</p>;
+  // Dữ liệu hóa đơn cứng
+  const hoaDon = {
+    MaHoaDon: 'HD001',
+    NgayLap: '2024-11-27T00:00:00',
+    GioLap: '2024-11-27T10:30:00',
+    TongTien: 1500000,
+    MaPhieu: 'MP001',
+  };
 
   return (
     <div className="hoa-don-container">
