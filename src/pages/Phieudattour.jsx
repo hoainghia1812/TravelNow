@@ -147,7 +147,7 @@ const Phieudattour = () => {
   const thanhtoan = async () => {
     const orderProps = {
       money: phieuDatTour.donGia,
-      serviceName: "TravelNow",
+      serviceName: "TN",
       items: [
         { name: tenTour, amount: phieuDatTour.soLuongNguoiDi, unitPrice: phieuDatTour.donGia },
       ],
