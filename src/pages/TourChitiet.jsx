@@ -233,18 +233,28 @@ const TourChitiet = () => {
   const handleDattour = async () => {
     if (user) {
       try {
-        // Lấy dữ liệu chi tiết của tour
+        // Kiểm tra trạng thái của tour
         const response = await axios.get(`https://tourdulich-bheqa4hpbgbjdrey.southeastasia-01.azurewebsites.net/tour/tour/${maTour}`);
+        const tourData = response.data;
+  
+        if (tourData.trangThai === "Hết hạn") {
+          toast.error("Tour này đã hết hạn, vui lòng chọn tour khác.");
+          setTimeout(() => {
+            navigate('/');
+          }, 2000);
+          return;
+        }
+  
+        // Thay đổi trạng thái của tour thành "Hết hạn"
         const updatedTour = {
-          ...response.data,
+          ...tourData,
           trangThai: "Hết hạn", // Thay đổi trạng thái
         };
-
-        // Cập nhật tour với trạng thái "Hết hạn"
+  
         await axios.put(`https://tourdulich-bheqa4hpbgbjdrey.southeastasia-01.azurewebsites.net/tour/Tour/${maTour}`, updatedTour);
-
+  
         toast.success("Cập nhật trạng thái tour thành công!");
-
+  
         // Tiến hành đặt tour
         const bookingDetails = {
           maPhieu: "PD01", // Tạm thời sử dụng mã giả
@@ -257,9 +267,9 @@ const TourChitiet = () => {
           sdtNguoiDung: sdtNguoiDung, // Số điện thoại người dùng
           maTour: maTour, // Mã tour được truyền qua URL
         };
-
+  
         const bookingResponse = await axios.post('https://tourdulich-bheqa4hpbgbjdrey.southeastasia-01.azurewebsites.net/ticket/PhieuDatTour', bookingDetails);
-
+  
         if (bookingResponse.status >= 200 && bookingResponse.status <= 204) {
           const maPhieu = bookingResponse.data.maPhieu;
           toast.success("Đặt tour thành công!");
@@ -289,6 +299,7 @@ const TourChitiet = () => {
       );
     }
   };
+  
 
   return (
     <div className="tourchitiet-container">

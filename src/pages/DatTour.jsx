@@ -272,7 +272,7 @@ const DatTour = () => {
     if (tourName === "Tour gia đình" && totalPeople > 6) {
       alert("Tour gia đình chỉ cho phép tối đa 6 người (bao gồm cả người lớn và trẻ em).");
       return;
-    } else if (tourName === "Tour 1 người" && numAdults > 1) {
+    } else if (tourName === "Tour 1 người" && totalPeople > 1) {
       alert("Tour 1 người chỉ cho phép tối đa 1 người lớn.");
       return;
     } else if (tourName === "Tour Nhiều Người" && totalPeople > 30) {
@@ -348,10 +348,10 @@ const DatTour = () => {
       } catch (error) {
         if (error.response) {
           console.error('API Error:', error.response.data);
-          alert(`Có lỗi xảy ra khi thêm ${participant.tenNguoiDi}. ${error.response.data.title}`);
+          // alert(`Có lỗi xảy ra khi thêm ${participant.tenNguoiDi}. ${error.response.data.title}`);
         } else {
           console.error('Unknown error:', error);
-          alert(`Có lỗi xảy ra khi thêm ${participant.tenNguoiDi}.`);
+          // alert(`Có lỗi xảy ra khi thêm ${participant.tenNguoiDi}.`);
         }
       }
       const totalPeople = numAdults + numChildren;
