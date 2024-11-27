@@ -38,6 +38,7 @@ import Token from "../pages/Token";
 import HoaDon from "../pages/HoaDon";
 import Phieudattour from "../pages/Phieudattour";
 import QlDatTour from "../adminSan/QlDatTour";
+import LsDt from "../pages/LsDt";
 const Routers = () => {
   return (
     <Routes>
@@ -83,6 +84,7 @@ const Routers = () => {
       {/* <Route path="/hoadon" element={<HoaDon/>} /> */}
 
       <Route path="/qldattour" element={<QlDatTour/>} />
+      <Route path="/lsdt" element={<LsDt/>} />
       </Routes>
   );
 };
