@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom'; // Import useParams để lấy tham số từ URL
 import axios from 'axios';
 import './HoaDon.css';
 
-const HoaDon = ({ maPhieu }) => {
+const HoaDon = () => {
+  const { maPhieu } = useParams(); // Lấy maPhieu từ URL
   const [hoaDon, setHoaDon] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,7 +15,7 @@ const HoaDon = ({ maPhieu }) => {
         setLoading(true);
         setError(null);
 
-        // Thay đường dẫn bằng API thực tế của bạn
+        // Gọi API với maPhieu lấy từ URL
         const response = await axios.get(
           `https://tourdulich-bheqa4hpbgbjdrey.southeastasia-01.azurewebsites.net/bill/HoaDon/${maPhieu}`
         );
